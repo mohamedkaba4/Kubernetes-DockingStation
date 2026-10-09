@@ -30,7 +30,7 @@ spec:
               app: storefront
       containers:
         - name: storefront
-          image: acrmavencrestproda1wl.azurecr.io/mavencrest-storefront:multi-v1
+          image: acrmavencrestproda1wl.azurecr.io/mavencrest-storefront:146
           ports:
             - containerPort: 3000
           envFrom:
