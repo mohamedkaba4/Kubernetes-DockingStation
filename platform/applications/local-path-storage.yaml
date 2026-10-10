@@ -1,0 +1,19 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: local-path-storage
+  namespace: argocd
+spec:
+  project: default
+  source:
+    repoURL: https://github.com/mohamedkaba4/Kubernetes-DockingStation.git
+    targetRevision: main
+    path: platform/local-path-storage
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: local-path-storage
+  syncPolicy:
+    automated:
+      enabled: true
+      prune: false
+      selfHeal: true

@@ -1,0 +1,12 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+resources:
+  - install-v0.0.37.yaml
+patches:
+  - target:
+      kind: StorageClass
+      name: local-path
+    patch: |-
+      - op: replace
+        path: /reclaimPolicy
+        value: Retain
