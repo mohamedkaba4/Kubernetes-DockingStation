@@ -13,6 +13,8 @@ spec:
       releaseName: monitoring
       values: |
         grafana:
+          deploymentStrategy:
+            type: Recreate
           service:
             type: ClusterIP
           persistence:
