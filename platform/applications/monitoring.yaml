@@ -19,8 +19,14 @@ spec:
             type: ClusterIP
           persistence:
             enabled: true
-            storageClassName: local-path
-            size: 1Gi
+            existingClaim: monitoring-grafana-nfs
+          initChownData:
+            enabled: false
+          securityContext:
+            runAsUser: 472
+            runAsGroup: 472
+            runAsNonRoot: true
+            fsGroup: null
           resources:
             requests:
               cpu: 100m
