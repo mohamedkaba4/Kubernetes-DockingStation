@@ -22,7 +22,7 @@ spec:
         - name: acr-pull
       topologySpreadConstraints:
         - maxSkew: 1
-          minDomains: 2  # NEW: Require at least 2 eligible node domains
+          minDomains: 2 
           topologyKey: kubernetes.io/hostname
           whenUnsatisfiable: DoNotSchedule
           nodeTaintsPolicy: Honor
