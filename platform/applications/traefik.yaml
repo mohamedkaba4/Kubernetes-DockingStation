@@ -16,7 +16,8 @@ spec:
           replicas: 2
 
         service:
-          type: ClusterIP
+          spec:
+            type: ClusterIP
 
         providers:
           kubernetesIngress:
