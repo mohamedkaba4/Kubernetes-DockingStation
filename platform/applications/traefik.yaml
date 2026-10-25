@@ -23,13 +23,19 @@ spec:
           kubernetesIngress:
             enabled: true
 
-        ingressClass:
-          enabled: true
-          isDefaultClass: false
-
         ingressRoute:
           dashboard:
             enabled: false
+
+        metrics:
+          prometheus:
+            addRoutersLabels: true
+            service:
+              enabled: true
+            serviceMonitor:
+              enabled: true
+              additionalLabels:
+                release: monitoring
 
   destination:
     server: https://kubernetes.default.svc
