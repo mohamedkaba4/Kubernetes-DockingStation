@@ -53,7 +53,7 @@ Changes pushed to the repository are automatically reconciled with the cluster, 
 
 Argo CD Application Dashboard
 
-<img src="docs/argo.png" alt="Argo CD GitOps Application Dashboard" width="100%">
+<img src="docs/images/argo.png" alt="Argo CD GitOps Application Dashboard" width="100%">
 
 Argo CD dashboard showing the applications and platform services managed through GitOps.
 ## Observability & Monitoring
