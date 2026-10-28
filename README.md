@@ -103,19 +103,18 @@ Throughout the project, I worked through several Kubernetes deployment and infra
 
 ```text
 Kubernetes-DockingStation/
-├── apps/                       # Application manifests
+├── apps/                       * Kubernetes application manifests
 ├── platform/
-│   ├── applications/           # Argo CD child Applications
-│   ├── argocd/                 # Argo CD configuration
-│   ├── cloudflared/            # Cloudflare Tunnel
-│   ├── local-path-storage/     # Storage configuration
-│   ├── metrics-server/         # Resource metrics
-│   └── app-of-apps.yaml        # GitOps bootstrap
-├── dashboards/
-│   └── cloudfront-s3.json      # Grafana dashboard export
+│   ├── applications/           * Argo CD child Applications
+│   ├── argocd/                 * Argo CD configuration
+│   ├── cloudflared/            * Cloudflare Tunnel
+│   ├── local-path-storage/     * Persistent storage
+│   ├── metrics-server/         * Kubernetes resource metrics
+│   └── app-of-apps.yaml        * GitOps bootstrap
 ├── docs/
 │   └── images/
-│       └── cloudfront-dashboard.png
+│       ├── argo.png            * Argo CD dashboard screenshot
+│       └── Grafana-dash        * Grafana dashboard screenshot
 └── README.md
 ```
 
