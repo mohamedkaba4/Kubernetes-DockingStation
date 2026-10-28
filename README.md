@@ -45,6 +45,17 @@ The platform uses kubeadm and containerd, with Flannel for pod networking and Ta
 - **Observability:** Deployed Prometheus, Grafana, and Alertmanager to monitor Kubernetes resources, application workloads, and ingress traffic.
 - **AWS Integration:** Connected AWS CloudWatch to Grafana to monitor CloudFront and S3 metrics from my AWS-hosted portfolio website.
 
+## GitOps & Argo CD
+
+I configured Argo CD using the App-of-Apps pattern to manage Kubernetes applications and platform services through GitHub.
+
+Changes pushed to the repository are automatically reconciled with the cluster, allowing me to manage deployments and configurations through Git rather than applying manifests manually.
+
+Argo CD Application Dashboard
+
+<img src="docs/argo.png" alt="Argo CD GitOps Application Dashboard" width="100%">
+
+Argo CD dashboard showing the applications and platform services managed through GitOps.
 ## Observability & Monitoring
 
 I deployed `kube-prometheus-stack` through Argo CD to collect metrics from the Kubernetes cluster and monitor infrastructure health.
