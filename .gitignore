@@ -3,3 +3,7 @@
 *.env
 *secret*.yaml
 *secret*.yml
+
+# Local Python environments
+.venv/
+venv/
