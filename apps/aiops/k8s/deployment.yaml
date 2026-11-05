@@ -5,8 +5,8 @@ metadata:
   namespace: aiops
 spec:
   accessModes:
-    - ReadWriteMany
-  storageClassName: nfs-csi
+    - ReadWriteOnce
+  storageClassName: local-path
   resources:
     requests:
       storage: 1Gi
