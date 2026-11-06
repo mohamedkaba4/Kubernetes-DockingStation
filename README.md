@@ -121,18 +121,23 @@ Throughout the project, I worked through several Kubernetes deployment and infra
 
 ```text
 Kubernetes-DockingStation/
-├── apps/                       * Kubernetes application manifests
+├── apps/
+│   ├── mavencrest/             # Mavencrest application manifests
+│   └── aiops/
+│       ├── src/                # Evidence collection, AI analysis, report API
+│       ├── k8s/                # Deployment, Service, storage, RBAC, alerting
+│       ├── Dockerfile          # Investigator container image
+│       └── requirements.txt    # Python dependencies
 ├── platform/
-│   ├── applications/           * Argo CD child Applications
-│   ├── argocd/                 * Argo CD configuration
-│   ├── cloudflared/            * Cloudflare Tunnel
-│   ├── local-path-storage/     * Persistent storage
-│   ├── metrics-server/         * Kubernetes resource metrics
-│   └── app-of-apps.yaml        * GitOps bootstrap
+│   ├── applications/           # Argo CD child Applications
+│   ├── argocd/                 # Argo CD installation and configuration
+│   ├── cloudflared/            # Cloudflare Tunnel
+│   ├── local-path-storage/     # Local persistent storage provisioner
+│   ├── metrics-server/         # Kubernetes resource metrics
+│   └── app-of-apps.yaml        # GitOps bootstrap
+├── dashboards/                 # Grafana dashboard definitions
 ├── docs/
-│   └── images/
-│       ├── argo.png            * Argo CD dashboard screenshot
-│       └── Grafana-dash        * Grafana dashboard screenshot
+│   └── images/                 # Architecture diagrams and screenshots
 └── README.md
 ```
 
