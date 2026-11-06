@@ -86,6 +86,24 @@ This provides visibility into:
 - Request latency and traffic patterns.
 - Active connections and ingress-controller performance.
 
+### AIOps — Automated Alert Investigation
+
+A Python service that investigates Kubernetes failures and produces AI-assisted incident reports.
+
+- **Prometheus** detects containers in `CrashLoopBackOff`.
+- **Alertmanager** sends an authenticated webhook to the investigator.
+- The investigator collects pod status, restart counts, events, and container logs.
+- **OpenAI** analyzes the evidence and suggests likely causes and troubleshooting steps.
+- Reports are saved to persistent storage; the latest report is available in **Grafana** through the Infinity data source.
+
+The service uses namespace-scoped, read-only RBAC and does not modify workloads. Credentials are stored in Kubernetes Secrets, and deployment is managed through Argo CD.
+
+**Validated:** A pod crashing from a missing `DATABASE_URL` automatically triggered an investigation and displayed the completed report in Grafana.
+
+<img src="docs/images/aiops-ss" alt="Grafana AIOps investigation dashboard showing the affected pod, analysis status, and AI-generated report" width="100%">
+
+*Grafana dashboard displaying the latest automated Kubernetes investigation, with a compact report preview and an expandable view of the likely cause, supporting evidence, and suggested next steps.*
+
 ## Testing & Troubleshooting
 
 Throughout the project, I worked through several Kubernetes deployment and infrastructure issues, including:
