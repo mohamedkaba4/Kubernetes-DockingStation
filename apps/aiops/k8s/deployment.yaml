@@ -38,7 +38,7 @@ spec:
         fsGroup: 10001
       containers:
         - name: investigator
-          image: ghcr.io/mohamedkaba4/aiops-investigator:v0.3
+          image: ghcr.io/mohamedkaba4/aiops-investigator:v0.3.0
           ports:
             - name: http
               containerPort: 8080
