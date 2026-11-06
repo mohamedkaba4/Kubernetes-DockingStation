@@ -174,3 +174,25 @@ def investigate(payload: Webhook, authorization: str = Header(default="")):
         return {"reports": reports}
     finally:
         lock.release()
+
+@app.get("/reports/latest")
+def latest_report(authorization: str = Header(default="")):
+    if not secrets.compare_digest(
+        authorization, f"Bearer {WEBHOOK_TOKEN}"
+    ):
+        raise HTTPException(status_code=401, detail="Unauthorized")
+
+    files = list(REPORT_DIR.glob("*.json"))
+    if not files:
+        return []
+
+    path = max(files, key=lambda p: p.stat().st_mtime)
+    report = json.loads(path.read_text())
+    analysis = report.get("analysis", {})
+    return [{
+        "file": path.name,
+        "pod": report.get("evidence", {}).get("pod", ""),
+        "status": analysis.get("status", ""),
+        "report": analysis.get("report")
+                  or analysis.get("error_type", "No AI analysis")
+    }]

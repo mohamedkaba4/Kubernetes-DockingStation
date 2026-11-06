@@ -13,6 +13,8 @@ spec:
       releaseName: monitoring
       values: |
         grafana:
+          plugins:
+            - yesoreyeram-infinity-datasource
           nodeSelector:
             kubernetes.io/hostname: worker4
           deploymentStrategy:
