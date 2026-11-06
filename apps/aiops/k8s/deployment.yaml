@@ -38,7 +38,7 @@ spec:
         fsGroup: 10001
       containers:
         - name: investigator
-          image: ghcr.io/mohamedkaba4/aiops-investigator@sha256:23083f89b6bd6eb89f6a7f5dacf8dd4c04c2a3684db1a14266c9c32a90e37457
+          image: ghcr.io/mohamedkaba4/aiops-investigator@sha256:4a12f661ffe41b7ae9e8b4f0784223b1901faa4a7f69861d4ff0b37808556fbf
           ports:
             - name: http
               containerPort: 8080
@@ -47,6 +47,15 @@ spec:
               value: mavencrest
             - name: REPORT_DIR
               value: /reports
+            - name: AI_ENABLED
+              value: "true"
+            - name: AI_MODEL
+              value: gpt-4.1-mini
+            - name: OPENAI_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: aiops-openai
+                  key: OPENAI_API_KEY
             - name: WEBHOOK_TOKEN
               valueFrom:
                 secretKeyRef:

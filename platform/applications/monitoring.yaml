@@ -67,6 +67,12 @@ spec:
 
         alertmanager:
           alertmanagerSpec:
+            alertmanagerConfigSelector:
+              matchLabels:
+                app: aiops-investigator
+            alertmanagerConfigNamespaceSelector:
+              matchLabels:
+                kubernetes.io/metadata.name: mavencrest
             resources:
               requests:
                 cpu: 50m

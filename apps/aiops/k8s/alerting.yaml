@@ -1,0 +1,49 @@
+apiVersion: monitoring.coreos.com/v1alpha1
+kind: AlertmanagerConfig
+metadata:
+  name: aiops
+  namespace: mavencrest
+  labels:
+    app: aiops-investigator
+spec:
+  route:
+    receiver: aiops
+    groupBy: ["namespace", "pod", "alertname"]
+    groupWait: 10s
+    groupInterval: 1m
+    repeatInterval: 1h
+    matchers:
+      - name: alertname
+        value: AIOpsContainerRestarting
+        matchType: "="
+  receivers:
+    - name: aiops
+      webhookConfigs:
+        - url: http://aiops-investigator.aiops.svc.cluster.local:8080/webhook
+          sendResolved: false
+          maxAlerts: 1
+          httpConfig:
+            authorization:
+              type: Bearer
+              credentials:
+                name: aiops-webhook
+                key: WEBHOOK_TOKEN
+---
+apiVersion: monitoring.coreos.com/v1
+kind: PrometheusRule
+metadata:
+  name: aiops-container-restarts
+  namespace: monitoring
+  labels:
+    release: monitoring
+spec:
+  groups:
+    - name: aiops
+      rules:
+        - alert: AIOpsContainerRestarting
+          expr: kube_pod_container_status_waiting_reason{namespace="mavencrest",reason="CrashLoopBackOff"} == 1
+          for: 1m
+          labels:
+            severity: warning
+          annotations:
+            summary: "Container repeatedly failing in {{ $labels.pod }}"

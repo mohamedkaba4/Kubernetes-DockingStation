@@ -1,3 +1,4 @@
+from src.ai import analyze
 import json
 import os
 import re
@@ -156,8 +157,10 @@ def investigate(payload: Webhook, authorization: str = Header(default="")):
 
             stamp = datetime.now(timezone.utc).strftime("%Y%m%dT%H%M%S%fZ")
             filename = f"{stamp}-{secrets.token_hex(4)}.json"
+            analysis = analyze(evidence)
             report = {
-                "stage": "evidence-only",
+                "analysis": analysis,
+                "stage": "ai-analysis" if analysis["status"] == "completed" else "evidence-only",
                 "alert": alert_name,
                 "collected_at": stamp,
                 "evidence": evidence,
