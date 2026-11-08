@@ -1,7 +1,7 @@
 image:
-  repository: acrmavencrestproda1wl.azurecr.io/mavencrest-storefront
-  tag: "146"
-  pullSecret: acr-pull
+  repository: ghcr.io/mohamedkaba4/mavencrest-storefront
+  tag: "v1"
+  pullSecret: ghcr-pull
 
 service:
   type: NodePort
@@ -21,3 +21,39 @@ autoscaling:
 
 pdb:
   minAvailable: 1
+
+admin:
+  enabled: false
+  image:
+    repository: ghcr.io/mohamedkaba4/mavencrest-admin
+    tag: "v1"
+  imagePullSecret: ghcr-pull
+  envSecret: admin-env
+  port: 3001
+  service:
+    port: 80
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: "1"
+      memory: 512Mi
+
+admin:
+  enabled: true
+  image:
+    repository: ghcr.io/mohamedkaba4/mavencrest-admin
+    tag: "v1"
+  imagePullSecret: ghcr-pull
+  envSecret: admin-env
+  port: 3001
+  service:
+    port: 80
+  resources:
+    requests:
+      cpu: 100m
+      memory: 128Mi
+    limits:
+      cpu: "1"
+      memory: 512Mi
