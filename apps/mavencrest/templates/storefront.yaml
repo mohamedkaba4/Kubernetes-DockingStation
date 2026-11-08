@@ -18,7 +18,7 @@ spec:
         app: storefront
     spec:
       imagePullSecrets:
-        - name: {{ .Values.image.pullSecret }}
+        - name: {{ .Values.storefront.image.pullSecret }}
       topologySpreadConstraints:
         - maxSkew: 1
           minDomains: 2 
@@ -30,7 +30,7 @@ spec:
               app: storefront
       containers:
         - name: storefront
-          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+          image: "{{ .Values.storefront.image.repository }}:{{ .Values.storefront.image.tag }}"
           ports:
             - containerPort: 3000
           envFrom:
@@ -65,12 +65,12 @@ metadata:
   name: storefront
   namespace: mavencrest
 spec:
-  type: {{ .Values.service.type }}
+  type: {{ .Values.storefront.service.type }}
   selector:
     app: storefront
   ports:
-    - port: {{ .Values.service.port }}
-      targetPort: {{ .Values.service.targetPort }}
-      {{- if eq .Values.service.type "NodePort" }}
-      nodePort: {{ .Values.service.nodePort }}
+    - port: {{ .Values.storefront.service.port }}
+      targetPort: {{ .Values.storefront.service.targetPort }}
+      {{- if eq .Values.storefront.service.type "NodePort" }}
+      nodePort: {{ .Values.storefront.service.nodePort }}
       {{- end }}

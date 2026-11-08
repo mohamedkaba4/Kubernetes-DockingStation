@@ -13,7 +13,7 @@ spec:
     helm:
       releaseName: mavencrest
       valueFiles:
-        - values-onprem.yaml
+        - values.yaml
 
   destination:
     server: https://kubernetes.default.svc

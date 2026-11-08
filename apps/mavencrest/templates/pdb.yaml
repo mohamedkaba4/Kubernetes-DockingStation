@@ -4,7 +4,7 @@ metadata:
   name: storefront-pdb
   namespace: mavencrest
 spec:
-  minAvailable: {{ .Values.pdb.minAvailable }}
+  minAvailable: {{ .Values.storefront.pdb.minAvailable }}
   selector:
     matchLabels:
       app: storefront
