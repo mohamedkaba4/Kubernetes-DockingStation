@@ -1,0 +1,23 @@
+image:
+  repository: acrmavencrestproda1wl.azurecr.io/mavencrest-storefront
+  tag: "146"
+  pullSecret: acr-pull
+
+service:
+  type: NodePort
+  port: 80
+  targetPort: 3000
+  nodePort: 30081
+
+ingress:
+  enabled: true
+  className: traefik
+  host: k8.mavencrest.shop
+
+autoscaling:
+  minReplicas: 1
+  maxReplicas: 4
+  cpuUtilization: 60
+
+pdb:
+  minAvailable: 1

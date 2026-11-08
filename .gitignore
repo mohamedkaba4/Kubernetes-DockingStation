@@ -7,3 +7,5 @@
 # Local Python environments
 .venv/
 venv/
+.DS_Store
+backup/

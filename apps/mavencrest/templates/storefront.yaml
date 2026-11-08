@@ -18,7 +18,7 @@ spec:
         app: storefront
     spec:
       imagePullSecrets:
-        - name: acr-pull
+        - name: {{ .Values.image.pullSecret }}
       topologySpreadConstraints:
         - maxSkew: 1
           minDomains: 2 
@@ -30,7 +30,7 @@ spec:
               app: storefront
       containers:
         - name: storefront
-          image: acrmavencrestproda1wl.azurecr.io/mavencrest-storefront:146
+          image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
           ports:
             - containerPort: 3000
           envFrom:
@@ -65,10 +65,12 @@ metadata:
   name: storefront
   namespace: mavencrest
 spec:
-  type: NodePort
+  type: {{ .Values.service.type }}
   selector:
     app: storefront
   ports:
-    - port: 80
-      targetPort: 3000
-      nodePort: 30081
+    - port: {{ .Values.service.port }}
+      targetPort: {{ .Values.service.targetPort }}
+      {{- if eq .Values.service.type "NodePort" }}
+      nodePort: {{ .Values.service.nodePort }}
+      {{- end }}

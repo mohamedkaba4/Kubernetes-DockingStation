@@ -8,8 +8,8 @@ spec:
     apiVersion: apps/v1
     kind: Deployment
     name: storefront
-  minReplicas: 1
-  maxReplicas: 4
+  minReplicas: {{ .Values.autoscaling.minReplicas }}
+  maxReplicas: {{ .Values.autoscaling.maxReplicas }}
   behavior:
     scaleDown:
       stabilizationWindowSeconds: 60
@@ -19,4 +19,4 @@ spec:
         name: cpu
         target:
           type: Utilization
-          averageUtilization: 60
+          averageUtilization: {{ .Values.autoscaling.cpuUtilization }}

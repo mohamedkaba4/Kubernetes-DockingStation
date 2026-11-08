@@ -7,9 +7,13 @@ spec:
   project: default
 
   source:
-    repoURL: https://github.com/mohamedkaba4/Kubernetes-DockingStation.git
-    targetRevision: main
-    path: apps/mavencrest
+  repoURL: https://github.com/mohamedkaba4/Kubernetes-DockingStation.git
+  targetRevision: main
+  path: apps/mavencrest
+  helm:
+    releaseName: mavencrest
+    valueFiles:
+      - values-onprem.yaml
 
   destination:
     server: https://kubernetes.default.svc
